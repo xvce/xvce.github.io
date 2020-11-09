@@ -1,0 +1,241 @@
+数据类型 容器
+一、列表与元组：
+数据收纳盒：收纳盒名字+数字序号  以访问每个数据
+Eg：box[5],  一般为6格
+列表可以删除、添加、替换、重排序列中的元素，而元组不可更改。
+
+创建列表：方括号法[ ]，指明类型法 list( )
+创建元组：圆括号法( ), 指明类型法 tuple( ),
+列表和元组中的元素成为元素
+
+增长列表： append 操作/ insert操作 / extend 
+Append：在列表末尾加上一个数据
+Insert：在列表当中插入，需要指定位置
+Extend：将一个列表接到另一个列表后面
+
+缩减列表：pop 操作/ remove 操作/ clear 操作/
+Pop：不带任何参数的pop就是移除最后一个元素，加序号就是移除指定元素，例如pop(o),就是移除第一个元素
+Remove:根据根据数据对象本身的值移除
+Clear：整个列表清除
+
+重新组织：reverse 倒序，/ sort 从小到大排列，如果想从大到小的话可以加入条件，例如
+          alist. sort (reverse = True)
+reversed/sorted 得到重新排列的列表，而不影响原来的列表。 
+
+合并： 加法运算+：连接两个列表/元组 不会改变原来两个列表，也可用乘法*
+
+索引：alist[n] 或者 atuple[n],
+可以用赋值语句给列表中任意一个位置重新赋值，但是在元组中只能获取相对应的位置
+赋值时时序号位数
+切片：
+alist[start : end : step]           
+Atuple[start : end : step]
+
+查找：in :判断是否在列表中
+      Index：在那个位置
+      Conunt：指定数据出现过几次
+计算：sum 将列表中元素累加
+      Mix/max 返回最小/最大值
+
+二、字典（贴标签的数据）
+通过具特定含义的名字作为标签来索引数据，区别于列表或元组或者通过连续整数来索引
+创建字典：花括号{ } eg：student = { } ,  student = dict ( )
+数据项（item） 包括key – value   ，标签数据值之间用: 链接
+批量添加数据项：  student = dict. fromkeys ((“name”, “age”))
+字典是可变类型，可添加、删除、替换元素
+
+字典中的元素value没有顺序，可以使任意类型，也可以是字典
+字典的键值key可以使任意不可改变类型（数值/字符串/元组） eg:
+>>>poi = {(100, 100): 'zhongguancun', (123, 23): 'Pizza'}
+>>>poi[(100, 100)]
+>>>zhongguancun
+
+修改字典：
+1.合并字典 update方法
+Eg: 
+>>> student = {}
+>>> student["name"] = "Tom"
+>>> student["age"] = "20"
+>>> student["gender"] = "male"
+>>> student
+{'name': 'Tom', 'age': '20', 'gender': 'male'}
+>>> bar = {"course": ["数学", "英语"]}
+>>> student. update(bar)
+>>> student
+{'name': 'Tom', 'age': '20', 'gender': 'male', 'course': ['数学', '英语']}
+     
+2.增长字典 关联操作 以key=value方式批量添加数据项
+Eg：
+>>> student. update (frients = ["Mike", "Alice"])
+>>> student
+{'name': 'Tom', 'age': '20', 'gender': 'male', 'course': ['数学', '英语'], 'frients': ['Mike', 'Alice']}
+
+3.缩减字典
+Del操作：删除指定标签的数据项 注：删除的是标签以及标签内的内容，但索引凭据是标签
+Eg：
+>>> del student["age"]
+>>> student
+{'name': 'Tom', 'gender': 'male', 'course': ['数学', '英语'], 'friends': ['Mike', 'Alice']}
+Pop操作：删除指定标签的数据项并返回数据值
+Eg：>>> student. pop('course')
+['数学', '英语']
+Popitem：删除并返回任意一个数据项（从字典中随机返回一个数据项，并将其移除字典）用于抽样处理或遍历操作
+Eg：>>> student. popitem()
+('friends', ['Mike', 'Alice'])
+>>> student
+{'name': 'Tom', 'gender': 'male'}
+Clear：清除字典
+Eg：>>> student. clear()
+>>> student
+{}
+4.字典大小 
+Len函数：返回字典包含多少数据项
+
+4.标签索引：
+Dict[key]:获取字典中指定标签的数据值，更新指定标签的数据项
+Eg：>> student = {"name": "Tom", "age":20, "gender": "male"}
+>>> student["age"]
+20
+>>> student["age"] = 24
+>>> student
+{'name': 'Tom', 'age': 24, 'gender': 'male'}
+>>> student. get("name")
+'Tom'
+
+获取字典中的标签、数据值和数据项：
+Keys函数：返回所有标签
+Eg: >>> student={"name": "Tom:", "age": 20, "gender": "male"}
+>>> student. keys()
+dict_keys(['name', 'age', 'gender'])
+Values函数：返回字典中的所有数据值
+Eg: >>> student. values()
+dict_values(['Tom:', 20, 'male'])
+Items函数：将每个数据项表示为二元元祖，返回所有的数据项。
+Eg: >>> student. items()
+dict_items([('name', 'Tom:'), ('age', 20), ('gender', 'male')])
+
+5.在字典中查找
+In操作：判断字典中是否存在某个标签
+Eg:>>> 'name' in student
+True
+>>>
+>>> 'city' in student
+False
+In values 组合使用判断是否存在某个数据值
+Eg: >>> 20 in student. values()
+True
+三、集合（标签袋）
+与字典的区别在于 集合没有数值，只有标签，是标签的集合
+通过改造字典类型，去掉关联数据值，只留下标签的新容器类型
+是不重复元素的无序组合
+
+创建集合:{ } 或者 set( )
+也可用set ()从其他序列转换成集合
+集合为可变类型，可以修改，但不可加入不可变数据
+
+增长集合：
+Add:添加一个数据
+>>> a = set([1,2,3,4,5])
+>>> aset = {'a','b','c'}
+>>> aset. add(1.23)
+>>> aset
+{'b', 1.23, 'c', 'a'}
+
+Update：可以批量添加数据，例如加列表名字可以将列表中标签加入集合中
+缩减集合：
+Remove/discard:删除指定数据
+>>> aset. remove('b')
+>>> aset
+{1.23, 'c', 'a'}
+Pop：删除任意数据并返回值
+>>> aset. pop()
+1.23
+>>> aset
+{'c', 'a'}
+Clear：清空
+>>> aset. clear()
+>>> aset
+set()
+集合大小：
+Len函数
+>>> len(aset)
+0
+访问集合中的元素： 
+In 判断是否属于集合
+Pop，使用前需要做备份
+迭代循环： for a in aset:
+集合运算：两个集合相互作用得到新的集合
+ 
+Eg:
+>>> set()
+set()
+>>> aser = set('abc')
+>>> aset = set('abc')
+>>> 'a' in aset
+True
+>>> aset | set('bcd')
+{'b', 'c', 'd', 'a'}
+>>> aset & set(['b', 'c', 'd'])
+{'b', 'c'}
+>>> aset - set(('b', 'c','d'))
+{'a'}
+>>> aset ^ set('bcd')
+{'d', 'a'}
+>>> aset <= set('abcd')
+True
+>>> aset > set('avcd')
+False
+
+用集合去快速去除重复数据项：
+判断数据是否在一组数据中，如果这些数据的次序不重要，使用几何可以获得比列表更好的性能
+
+四、数据的可变类型和不可变类型
+不可变：整数、浮点数、复数、字符串、逻辑值、元组
+可变：列表、字典、集合
+
+变量的引用特性：
+可变类型的变量操作需要注意，多个变量通过赋值引用同一个可变类型对象时，通过其中任何一个变量改变可变类型对象，其他变量也是随之改变
+
+Eg：>>> a = [1,2,3,4]
+>>> a
+[1, 2, 3, 4]
+>>> b = a
+>>> b
+[1, 2, 3, 4]
+>>> id(a)
+140453507493120
+>>> id(b)
+140453507493120
+>>> a[0] = 'hello'
+>>> a
+['hello', 2, 3, 4]
+>>> b
+['hello', 2, 3, 4]
+
+可变类型的变量引用：常见错误
+ 
+
+五、建立复杂的数据结构
+列表[], 元组(), 字典{}，都是可以通过使用[]对单个元素进行返回
+将内置的数据结构自由组合可得到更大更复杂的结构
+创建自动以数据结构的过程中，唯一的限制是这些内置数据类型本身
+Eg：列表的列表  list_of_list = [[1, 2, 3], [‘hello’, ‘python’], [Ture, False]
+
+嵌套字典：dict_of_lists = {‘num’:[1,2,3], ‘word’:[“Hello’, ‘Python’], ‘bool’:[True, False]}
+字典的元素可以是任意类型，包括字典
+也可以用元组作为坐标，索引元素
+Eg：
+>>>alist = [[23,34,45], ['Ture','ab']]
+>>> alist[0] [2]
+45
+书签加位置
+>>> bands = {'Marxes': ['Moe', 'Currly'], 'KK':['Ture', 'moon']}
+>>> bands['KK'] [0]
+'Ture'
+坐标作为元组标签（），
+>>> poi = {(100, 100): 'Zhongguancun', (123,23): 'Pizza'}
+>>> poi[(100, 100)]
+'Zhongguancun'
+>>> poi[100, 100]
+'Zhongguancun'
+
